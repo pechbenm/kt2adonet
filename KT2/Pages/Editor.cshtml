@@ -1,0 +1,30 @@
+﻿@page
+@model KT2.Pages.EditorModel
+@{
+    ViewData["Title"] = "Редактор текста";
+}
+
+<h1>Редактор текста</h1>
+
+@if (TempData["Status"] != null)
+{
+    <div class="alert alert-success">@TempData["Status"]</div>
+}
+
+<form method="post">
+    <div class="mb-2">
+        <button type="button" class="btn btn-outline-secondary" data-tag="b"><b>Ж</b></button>
+        <button type="button" class="btn btn-outline-secondary" data-tag="i"><i>К</i></button>
+        <button type="button" class="btn btn-outline-secondary" data-tag="u"><u>Ч</u></button>
+    </div>
+
+    <textarea asp-for="Content" id="editor" rows="12" class="form-control"></textarea>
+    <button type="submit" class="btn btn-primary mt-2">Сохранить</button>
+</form>
+
+<h2 class="mt-4">Результат</h2>
+<div class="border rounded p-3" style="white-space: pre-wrap;">@Html.Raw(Model.PreviewHtml)</div>
+
+@section Scripts {
+    <script src="~/js/editor.js"></script>
+}
